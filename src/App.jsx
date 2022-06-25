@@ -1,14 +1,36 @@
-import { useState } from 'react'
+import { Route, Routes, BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
+import AuthLayout from './layout/AuthLayout'
+import Login from './pages/login'
+import Register from './pages/register'
 
 
 function App() {
 
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="font-bold text-5xl">
-      <h1>Hola</h1>
-    </div>
+
+    <BrowserRouter>
+      <AuthProvider>
+
+          <Routes>
+
+            <Route path="/" element={<AuthLayout/>}>
+
+                <Route index element={ <Login />}/>
+
+                <Route path="sign-in" element={ <Register />} />
+
+            </Route>
+
+
+
+
+
+
+          </Routes>
+
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
 
