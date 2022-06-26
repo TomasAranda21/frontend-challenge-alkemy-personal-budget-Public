@@ -11,16 +11,27 @@ export const OperationProvider = ({children}) => {
 
     const [operations, setOperations] = useState([])
 
+    const [loadingOper, setLoadingOper] = useState(true)
+
     const token = localStorage.getItem('token_user00012304050')
 
     useEffect(() => {
 
         const getOperation = async () => {
 
-            const {data} = await Axios('/', checkToken(token))
+            try {
 
-            setOperations(data)
+                const {data} = await Axios('/', checkToken(token))
+    
+                setOperations(data)
+                
+            } catch (error) {
+                
+                console.log(error)
 
+            }
+
+            setLoadingOper(false)
 
         }
         
@@ -54,6 +65,23 @@ export const OperationProvider = ({children}) => {
     }
 
 
+    const deleteOperation = async (id) => {
+
+        try {
+            const {data} = await Axios.delete(`/${id}`, checkToken(token))
+
+            const operationsDelete = operations.filter(operation => operation._id !== id)
+
+            setOperations(operationsDelete)
+            
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    }
+
+
 
 
   return (
@@ -63,7 +91,9 @@ export const OperationProvider = ({children}) => {
     value={{
         addOperation,
         updateOperation,
+        deleteOperation,
         operations,
+        loadingOper
 
 
     }}
