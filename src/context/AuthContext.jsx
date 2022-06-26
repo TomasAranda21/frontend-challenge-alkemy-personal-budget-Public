@@ -36,7 +36,7 @@ export const AuthProvider = ({children}) => {
         setAuth({})
 
         return {
-          msg: error.response.data.msg,
+          msg: error?.response.data.msg,
           error: true
         }
 
@@ -84,7 +84,7 @@ export const AuthProvider = ({children}) => {
     } catch (error) {
       console.log(error)
     }
-    
+
   }
 
 
