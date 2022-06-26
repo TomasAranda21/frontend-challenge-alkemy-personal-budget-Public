@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import ButtonForm from './components/Buttons/ButtonForm'
+
 import { AuthProvider } from './context/AuthContext'
+import { OperationProvider } from './context/OperationContext'
 
 import AuthLayout from './layout/AuthLayout'
 import PrivateLayout from './layout/PrivateLayout'
@@ -9,6 +10,7 @@ import PrivateLayout from './layout/PrivateLayout'
 import Login from './pages/LoginUser'
 import Register from './pages/RegisterUser'
 import Home from './pages/HomeUser'
+import History from './pages/History'
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
     
     <BrowserRouter>
       <AuthProvider>
+        <OperationProvider>
 
           <Routes>
 
@@ -37,7 +40,7 @@ function App() {
                   <Route index element={<Home />} /> 
              
             
-                  {/* <Route path="sign-in" element={ <Register />} /> */}
+                  <Route path="transactions" element={ <History />} />
           
             </Route>
 
@@ -47,6 +50,7 @@ function App() {
 
           </Routes>
 
+        </OperationProvider>
       </AuthProvider>
     </BrowserRouter>
     
