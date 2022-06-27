@@ -14,7 +14,7 @@ const Header = () => {
 
 
         <div className="flex items-center gap-5 font-semibold">
-            <Link to='/'>Home</Link>
+            <Link to='/home'>Home</Link>
 
             <Link to='/home/transactions'>History</Link>
 
