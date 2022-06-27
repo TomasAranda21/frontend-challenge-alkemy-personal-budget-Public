@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import InputsForm from '../InputsForm/InputsForm'
 import ButtonForm from '../Buttons/ButtonForm'
 
-const FormAddOperation = ({functionUser, setViewModal}) => {
+const FormAddOperation = ({functionUser, setViewModal, amount, concept, category, type, data ,editing}) => {
 
     return (
 
@@ -13,11 +13,11 @@ const FormAddOperation = ({functionUser, setViewModal}) => {
     
             <Formik
             initialValues={{
-                amount: '',
-                concept: '',
-                category: '',
-                type: '',
-                data: '',
+                amount,
+                concept,
+                category,
+                type,
+                data,
             }}
     
             onSubmit={async (values) => {
@@ -45,7 +45,7 @@ const FormAddOperation = ({functionUser, setViewModal}) => {
                         name="amount"
                         /> 
 
-                        <select name="category" id="" onChange={handleChange}>
+                        <select name="category" id="" onChange={handleChange} value={values.category}>
                             <option value="">Select Category</option>
                             <option value="shopping">Shopping</option>
                             <option value="health">Health</option>
@@ -54,13 +54,15 @@ const FormAddOperation = ({functionUser, setViewModal}) => {
                             <option value="food">Food</option>
                         </select>
 
-
-                        <select name="type" id="" onChange={handleChange}>
+                        {!editing && 
+                        <select name="type" id="" onChange={handleChange} value={values.type}>
                             <option value="">Select type</option>
                             <option value="expense">Expense</option>
                             <option value="income">Income</option>
-                        
+                    
                         </select>
+                        }
+                        
 
 
                         <InputsForm
